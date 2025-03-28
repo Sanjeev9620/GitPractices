@@ -4,4 +4,4 @@ The initial code from the VScode to Github
 Created the Branch DM_02
 
 # Checking Merge Conflict
-This code is written for checking merge conflicts
+This code is written for checking merge and merge conflicts
