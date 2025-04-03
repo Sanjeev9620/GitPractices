@@ -1,4 +1,5 @@
 name: Bump version
+
 on:
   pull_request:
     types:
@@ -12,15 +13,17 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       contents: write
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: ${{ github.event.pull_request.merge_commit_sha }}
-        fetch-depth: '0'
 
-    - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@v1 # Don't use @master or @v1 unless you're happy to test the latest version
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if you don't want to set write permissions use a PAT token
-        WITH_V: false
-        PRERELEASE: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          fetch-depth: '0'
+
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1  # Avoid using @master or @v1 unless you're okay with testing the latest version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use a PAT token if you prefer not to use the default GITHUB_TOKEN
+          WITH_V: true
+          PRERELEASE: true
