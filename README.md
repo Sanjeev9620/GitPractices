@@ -4,7 +4,7 @@ Explore the power of Git and GitHub with this interactive learning project.
 
 ## Topics Involved
 
-1.Git and GitHub Basics
+1. Git and GitHub Basics
 2. Understanding Git and GitHub
 3. Generating SSH Keys and Connecting to GitHub
 4. Understanding Forks, Stars, and Pull Requests
