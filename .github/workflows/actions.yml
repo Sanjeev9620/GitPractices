@@ -1,13 +1,14 @@
-name: GitHub Actions 
+name: GitHub Actions
 
 on:
-  push: 
+  push:
     branches: [main]
-  
-jobs: 
+
+jobs:
   actions:
     runs-on: ubuntu-latest
 
     steps:
-      -name: Greetings
-       run: echo "GitHub Actions done!"
+      - name: Greetings
+        run: echo "GitHub_Actions done!"
+
