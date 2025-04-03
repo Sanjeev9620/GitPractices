@@ -1,24 +1,26 @@
-name: Bump Version and Create Tag
-
+name: Bump version
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - main  # or any branch you want to trigger the action
+      - master
 
 jobs:
-  bump-version:
-    runs-on: ubuntu-latest
-
+  build:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.merge_commit_sha }}
+        fetch-depth: '0'
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Bump Version and Create Tag
-        run: |
-          npm version patch  # Bumps the version
-          git push --follow-tags
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@v1 # Don't use @master or @v1 unless you're happy to test the latest version
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if you don't want to set write permissions use a PAT token
+        WITH_V: true
+        PRERELEASE: true
