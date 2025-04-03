@@ -1,0 +1,13 @@
+name: GitHub Actions 
+
+on:
+  push: 
+    branches: [main]
+  
+jobs: 
+  actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      -name: Greetings
+      run: echo "Github actions excecting successfully!"
