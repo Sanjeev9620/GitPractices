@@ -10,4 +10,4 @@ jobs:
 
     steps:
       -name: Greetings
-       run: echo "Github actions excecting successfully!"
+       run: echo "GitHub Actions done!"
