@@ -1,0 +1,49 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Triggers on push to the main branch
+  pull_request:
+    branches:
+      - main  # Triggers on pull requests to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Runs the job on the latest Ubuntu environment
+
+    steps:
+    # Step 1: Checkout code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v3  # Use a stable version of checkout action
+
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3  # Use a stable version of setup-node action
+      with:
+        node-version: '14'  # Specify the version of Node.js to use
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Step 4: Run tests
+    - name: Run tests
+      run: npm test
+
+    # Step 5: Install Heroku CLI
+    - name: Install Heroku CLI
+      run: |
+        curl https://cli-assets.heroku.com/install.sh | sh
+
+    # Step 6: Deploy to Heroku
+    - name: Deploy to Heroku
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}  # Add this secret to GitHub Secrets
+      run: |
+        # Login to Heroku
+        echo $HEROKU_API_KEY | heroku auth:token
+        # Add Heroku remote repository
+        git remote add heroku https://git.heroku.com/your-app-name.git
+        # Push to Heroku main branch
+        git push heroku main
