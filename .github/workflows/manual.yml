@@ -2,6 +2,24 @@ name: Manual Workflow
 
 on:
   workflow_dispatch:
+    inputs: 
+      name:
+        description: 'Enter your name'
+        type: string
+        default: 'test'
+      age:
+        description: 'Enter your age'
+        type: number
+        required: true
+      gender:
+        description: 'Enter your gender'
+        type: choice
+        options:
+          - Male
+          - Female
+      married:
+        description: 'Are you Married?'
+        type: boolean
 
 jobs:
   actions:
@@ -9,4 +27,13 @@ jobs:
 
     steps:
       - name: Greetings
-        run: echo "GitHub Actions done!"
+        run: echo "${{ inputs.name }}"
+
+      - name: Age
+        run: echo "${{ inputs.age }}"
+
+      - name: Gender
+        run: echo "${{ inputs.gender }}"
+
+      - name: Married
+        run: echo "${{ inputs.married }}"
