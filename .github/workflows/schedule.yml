@@ -1,0 +1,16 @@
+name: Scheduled workflow
+
+on:
+  workflow_dispatch:  # Fixed typo here (workfloe -> workflow)
+  schedule:
+    - cron: '*/5 * * * *'  # Fixed typo here (crone -> cron)
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log time
+        run: |
+          current_date_time=$(date)
+          echo "Current date and time: $current_date_time"
