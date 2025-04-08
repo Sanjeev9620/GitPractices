@@ -1,0 +1,12 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Greetings
+        run: echo "GitHub Actions done!"
