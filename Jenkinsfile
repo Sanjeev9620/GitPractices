@@ -3,7 +3,7 @@ pipeline{
   stages{
     stage('Checkout code'){
       steps{
-        git 'https://github.com/Sanjeev9620/Git-Practices'
+        git 'https://github.com/Sanjeev9620/GitPractices'
       }  
     }
     stage('Build'){
