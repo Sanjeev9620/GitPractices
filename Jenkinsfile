@@ -1,29 +1,25 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Checkout Code') {
-            steps {
-                git url: 'https://github.com/Sanjeev9620/GitPractices'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'echo "Building the code"'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'echo "Testing the code"'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                sh 'echo "Deploying the code"'
-            }
-        }
+  agent any
+  stages {
+    stage('Checkout code') {
+      steps {
+        git 'https://github.com/Sanjeev9620/GitPractices'
+      }  
     }
+    stage('Build') {
+      steps {
+        bat 'echo Building the code'
+      } 
+    }
+    stage('Test') {
+      steps {
+        bat 'echo Testing the code'
+      } 
+    }
+    stage('Deploy') {
+      steps {
+        bat 'echo Deploying the code'
+      } 
+    }
+  }
 }
